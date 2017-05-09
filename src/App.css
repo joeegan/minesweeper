@@ -1,0 +1,22 @@
+
+.row {
+  display: flex;
+}
+.cell {
+    width: 12px;
+    height: 13px;
+    background: #ccc;
+    border-top: 2px solid #eee;
+    border-left: 2px solid #eee;
+    border-right: 2px solid #666;
+    border-bottom: 2px solid #666;
+}
+
+.digits {
+  font-family: monospace;
+  color: red;
+  background: black;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+}
