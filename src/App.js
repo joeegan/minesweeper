@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './App.css';
 import _ from 'lodash';
 
@@ -15,10 +16,12 @@ class App extends Component {
       <div className='wrapper'>
         <div className='scoreBoard'>
           <div className='minesLeft digits'>010</div>
-          <div className='face face_smiling'>😃</div>
+          <div className='face face_smiling'>
+            <div className='face-inner'>😃</div>
+          </div>
           <div className='timeLeft digits'>000</div>
         </div>
-        <ul>{grid}</ul>
+        <div className='grid'>{grid}</div>
       </div>
     );
   }
