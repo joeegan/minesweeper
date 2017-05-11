@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono');
+@font-face {
+   font-family: 'digital-7';
+   src: url('/digital-7.mono.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+body {
+   margin: 20px;
+   overflow: hidden;
+   font-family: 'digital-7', monospace;
+}
 
 .wrapper {
   background: #999;
@@ -29,16 +40,26 @@
     border-left: 2px solid #eee;
     border-right: 2px solid #666;
     border-bottom: 2px solid #666;
+    line-height: 15px;
+    font-size: 12px;
 }
 
 .digits {
-  font-family: 'Droid Sans Mono', monospace;
   color: red;
   background: black;
-  font-size: 24px;
-  line-height: 24px;
-  font-weight: bold;
+  font-size: 36px;
+  line-height: 31px;
+  font-weight: 100;
   display: inline-block;
+  height: 26px;
+  position: relative;
+}
+
+.digits-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
 }
 
 .face-inner {
@@ -49,7 +70,7 @@
   border-left: 2px solid #eee;
   border-right: 2px solid #666;
   border-bottom: 2px solid #666;
-  left: 10px;
+  left: 7px;
   top: 2px;
   position: relative;
   cursor: pointer;
