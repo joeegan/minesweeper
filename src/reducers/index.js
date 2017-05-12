@@ -8,10 +8,15 @@ const countMines = (rowIndex, cellIndex, grid) => {
   const coords = [[-1, -1], [-1, 0], [-1, 1],
                   [0,  -1], [0, 1],
                   [1,  -1], [1, 0], [1, 1]];
+  console.log('rowIndex', rowIndex, 'cellIndex', cellIndex);
+  // const coords = [[0, 1]];
   return coords.reduce((acc, [r, c]) => {
      const row = grid[rowIndex + r];
+     console.log('row inspecting is', row);
      const cell = row && row[cellIndex + c];
-     if (row && cell && cell.content === '💣') {
+     console.log('cell inspecting is', cell);
+     if (cell && cell.content === '💣') {
+       console.log('found one, increasing count');
        return acc + 1;
      }
      return acc;
@@ -19,7 +24,7 @@ const countMines = (rowIndex, cellIndex, grid) => {
 }
 
 const grid = _(Array(gridSizeSquared))
-            .fill(0, gridSize, gridSizeSquared)
+              .fill(0, gridSize, gridSizeSquared)
               .fill('💣', 0, gridSize)
               .shuffle()
               .map((content, i) => ({
@@ -28,6 +33,7 @@ const grid = _(Array(gridSizeSquared))
                 index: i,
               }))
               .chunk(gridSize)
+              .value()
               .map((row, i, grid) => {
                 return row.map((cell, j) => {
                   if (cell.content !== '💣') {
@@ -36,7 +42,6 @@ const grid = _(Array(gridSizeSquared))
                   return cell;
                 });
               })
-              .value()
 
 const app = (state = { face: '😃', grid: grid }, action) => {
 
