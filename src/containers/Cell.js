@@ -3,12 +3,8 @@ import { CELL_PRESSED, CELL_UNCOVERED } from './../actions'
 import CellComponent from '../components/Cell'
 import _ from 'lodash'
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    index: ownProps.data.index,
-    covered: ownProps.data.covered,
-    content: ownProps.data.content,
-  }
+const mapStateToProps = (state, { index, covered, content }) => {
+  return { index, covered, content };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

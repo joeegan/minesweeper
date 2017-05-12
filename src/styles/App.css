@@ -40,9 +40,14 @@ body {
   border-left: 2px solid #666;
   border-right: 2px solid #eee;
   border-bottom: 2px solid #eee;
-  line-height: 15px;
-  font-size: 12px;
+
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 11px;
 }
+
+
 
 .cell.covered {
   border-top: 2px solid #eee;
@@ -98,4 +103,42 @@ body {
 
 .scoreBoard > div {
   flex: 1;
+}
+
+.cell {
+  font-family: monospace;
+}
+
+.cell💣 {
+  line-height: 15px;
+  font-size: 12px;
+}
+
+.cell0 {
+  color: transparent;
+}
+
+.cell1 {
+  color: blue;
+}
+.cell2 {
+  color: green
+}
+.cell3 {
+  color: red;
+}
+.cell4 {
+  color: blue;
+}
+.cell5 {
+  color: brown;
+}
+.cell6 {
+  color: teal;
+}
+.cell7 {
+  color: black;
+}
+.cell8 {
+  color: grey;
 }

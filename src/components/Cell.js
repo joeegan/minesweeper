@@ -6,6 +6,7 @@ const Cell = ({ onMouseDown, onMouseUp, content, covered, index }) => {
         onMouseUp={onMouseUp}
         className={covered ? 'cell covered' : 'cell'}
     >
+      <span className={'cell' + content}>{content}</span>
     </li>
   )
 }
