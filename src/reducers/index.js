@@ -2,25 +2,7 @@ import { combineReducers } from 'redux'
 import { CELL_PRESSED, CELL_UNCOVERED} from './../actions'
 import _ from 'lodash'
 
-const gridSize = 9;
-const gridSizeSquared = gridSize * gridSize;
-
-const grid = _(Array(gridSizeSquared))
-              .fill(0, gridSize, gridSizeSquared)
-              .fill('💣', 0, gridSize)
-              .shuffle()
-              .map((content, i) => {
-                return {
-                  content,
-                  covered: true,
-                  index: i
-                }
-              })
-              .chunk(gridSize)
-              .value()
-
-// TODO: Discover best practice for initial state
-const app = (state = { face: '😀', grid }, action) => {
+const app = (state = { face, grid }, action) => {
 
   switch (action.type) {
 

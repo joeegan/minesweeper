@@ -7,7 +7,7 @@ const Grid = ({ grid }) => {
       {grid.map((row, i) => (
         <ul className='row' key={i}>
           {row.map((data) => (
-            <Cell key={data.index} index={data.index} />
+            <Cell key={data.index} data={data} />
           ))}
         </ul>
       ))}
