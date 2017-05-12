@@ -19,6 +19,7 @@ const grid = _(Array(gridSizeSquared))
               .chunk(gridSize)
               .value()
 
+// TODO: Discover best practice for initial state
 const app = (state = { face: '😀', grid }, action) => {
 
   switch (action.type) {
