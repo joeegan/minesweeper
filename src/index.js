@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import appReducer from './reducers';
-import clock from './middlewares/clock';
+import clock from './middlewares/Clock';
 import App from './components/App';
 import _ from 'lodash';
 import './index.css';
