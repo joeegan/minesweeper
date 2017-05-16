@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { CELL_PRESSED, CELL_UNCOVERED} from './../actions'
+import { CELL_PRESSED, CELL_UNCOVERED, TICK} from './../actions'
 import _ from 'lodash'
 const gridSize = 9;
 const gridSizeSquared = gridSize * gridSize;
@@ -36,12 +36,14 @@ const grid = _(Array(gridSizeSquared))
                 });
               })
 
-const app = (state = { face: '😃', grid: grid }, action) => {
+const app = (state = { face: '😃', grid: grid, tick: 1}, action) => {
 
   switch (action.type) {
+    case TICK:
+      return Object.assign({}, state, { tick: state.tick + 1 })
 
     case CELL_PRESSED:
-      return Object.assign({}, state, { face: '😮' })
+      return Object.assign({}, state, { face: '😮' });
 
     case CELL_UNCOVERED:
       console.log(state.grid)
@@ -56,7 +58,7 @@ const app = (state = { face: '😃', grid: grid }, action) => {
       return Object.assign({}, state, { face: '😀', grid: newGrid })
 
     default:
-      console.log(state.grid)
+      console.log(state)
       return state
   }
 }

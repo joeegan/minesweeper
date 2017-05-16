@@ -3,12 +3,13 @@ import '../styles/App.css';
 import _ from 'lodash';
 import Face from '../containers/Face'
 import Grid from '../containers/Grid'
+import Clock from '../containers/Clock'
 
-const App = ({ face }) => (
+const App = () => (
   <div className='wrapper'>
     <div className='scoreBoard'>
       <div className='minesLeft digits'>
-        <div className='digits-bg'>888</div>
+        <div className='digits-bg'>{888}</div>
         010
       </div>
       <div className='face face_smiling'>
@@ -16,10 +17,7 @@ const App = ({ face }) => (
           <Face/>
         </div>
       </div>
-      <div className='timeLeft digits'>
-        <div className='digits-bg'>888</div>
-        000
-      </div>
+      <Clock/>
     </div>
     <div className='grid'>
       <Grid/>

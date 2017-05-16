@@ -1,13 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import appReducer from './reducers';
+import clock from './middlewares/clock';
 import App from './components/App';
 import _ from 'lodash';
 import './index.css';
 
-const store = createStore(appReducer);
+const createStoreWithMiddleware = applyMiddleware(clock)(createStore);
+const store = createStoreWithMiddleware(appReducer);
 
 render(
   <Provider store={store}>
