@@ -36,39 +36,43 @@ body {
   width: 12px;
   height: 13px;
   background: #ccc;
-  border-top: 2px solid #666;
-  border-left: 2px solid #666;
-  border-right: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-
+  border-top: 2px solid #eee;
+  border-left: 2px solid #eee;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666;
   font-family: monospace;
   font-weight: bold;
   font-size: 17px;
   line-height: 11px;
 }
 
-.cell.covered {
-  border-top: 2px solid #eee;
-  border-left: 2px solid #eee;
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666;
+.cell.uncovered {
+  border-top: 2px solid #666;
+  border-left: 2px solid #666;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+
 }
 
 .digits {
-  color: red;
-  background: black;
-  font-size: 36px;
-  line-height: 31px;
-  font-weight: 100;
   display: inline-block;
-  height: 26px;
   position: relative;
 }
 
+.digits-numbers,
 .digits-bg {
   position: absolute;
   top: 0;
   left: 0;
+  color: red;
+  background: black;
+  font-size: 34px;
+  font-weight: 100;
+  line-height: 28px;
+  height: 24px;
+}
+
+.digits-bg {
   opacity: 0.3;
 }
 
@@ -80,10 +84,8 @@ body {
   border-left: 2px solid #eee;
   border-right: 2px solid #666;
   border-bottom: 2px solid #666;
-  left: 7px;
-  top: 2px;
-  position: relative;
   cursor: pointer;
+  margin: 1px auto;
 }
 
 .face-inner:active {

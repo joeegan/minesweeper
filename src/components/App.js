@@ -8,10 +8,7 @@ import Clock from '../containers/Clock'
 const App = () => (
   <div className='wrapper'>
     <div className='scoreBoard'>
-      <div className='minesLeft digits'>
-        <div className='digits-bg'>{888}</div>
-        010
-      </div>
+      <Clock/>
       <div className='face face_smiling'>
         <div className='face-inner'>
           <Face/>

@@ -9,7 +9,7 @@ const Grid = ({ grid }) => (
           <Cell
             key={data.index}
             index={data.index}
-            covered={data.covered}
+            uncovered={data.uncovered}
             content={data.content}
           />
         ))}

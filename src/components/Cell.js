@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Cell = ({ onMouseDown, onMouseUp, content, covered, index }) => {
+const Cell = ({ onMouseDown, onMouseUp, content, uncovered, index }) => {
   return (
     <li onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
-        className={covered ? 'cell covered' : 'cell'}
+        className={uncovered ? 'cell uncovered' : 'cell'}
     >
       <span className={'cell' + content}>{content}</span>
     </li>
