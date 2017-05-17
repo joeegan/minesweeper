@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { FACE_CHANGED } from './../actions'
+import { RESTART } from './../actions'
 import FaceComponent from '../components/Face'
 
 const mapStateToProps = (state, ownProps) => {
@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
-      dispatch({ type: FACE_CHANGED })
+    onMouseUp: () => {
+      dispatch({ type: RESTART })
     }
   }
 }

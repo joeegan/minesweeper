@@ -1,20 +1,13 @@
 import {
   TICK,
-  CELL_PRESSED,
+  RESTART,
 } from '../actions';
 
 let interval;
 
 export default ({ dispatch }) => {
   return (next) => (action) => {
-    /* eslint-disable no-console */
-    if (console.group) {
-      console.group(action.type);
-      console.log('%c payload: ', 'color: green', action.payload);
-      console.groupEnd(action.type);
-    }
-    console.log(':::action?', action)
-    if (action.type === CELL_PRESSED) {
+    if (action.type === RESTART) {
       clearInterval(interval);
       interval = setInterval(() => {
         dispatch({

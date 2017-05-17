@@ -47,8 +47,6 @@ body {
   line-height: 11px;
 }
 
-
-
 .cell.covered {
   border-top: 2px solid #eee;
   border-left: 2px solid #eee;
@@ -86,6 +84,13 @@ body {
   top: 2px;
   position: relative;
   cursor: pointer;
+}
+
+.face-inner:active {
+  border-top: 2px solid #666;
+  border-left: 2px solid #666;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
 }
 
 .scoreBoard {

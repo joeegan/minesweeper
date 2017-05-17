@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import GridComponent from '../components/Grid'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('updating state:', state);
   return {
     grid: state.app.grid,
   }

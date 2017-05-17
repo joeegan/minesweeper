@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Face = ({ onMouseDown, face }) => {
+const Face = ({ onMouseUp, face }) => {
   return (
-    <div>
+    <div onMouseUp={onMouseUp}>
       {face}
     </div>
   )
