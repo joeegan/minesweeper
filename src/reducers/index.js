@@ -6,8 +6,10 @@ import {
   TICK,
 } from './../actions';
 import _ from 'lodash';
+
 const gridSize = 9;
 const gridSizeSquared = gridSize * gridSize;
+
 const neighbours = [
   [-1, -1],
   [-1, 0],
@@ -36,7 +38,6 @@ export const closeNeighbours = (
   cellIndex,
   grid
 ) => {
-  // console.log('checking', 'rowIndex', rowIndex, 'cellIndex', cellIndex);
   const neighbours = [[-1, 0], [0, -1], [0, 1], [1, 0]];
   return _.compact(
     neighbours.map(([r, c]) => {
@@ -49,8 +50,8 @@ export const closeNeighbours = (
 
 const nearbyZeroes = (cell, grid) => {
   const [i, j] = coordsFromIndex(cell.index, grid);
-  const neighbours = closeNeighbours(i, j, grid);
-  return neighbours.filter(c => c.content === 0);
+  return closeNeighbours(i, j, grid)
+            .filter(c => c.content === 0);
 };
 
 const countMines = (rowIndex, cellIndex, grid) => {
@@ -87,23 +88,10 @@ const isAlpha = char =>
   char && char.toString().match(/[A-Z]/);
 
 const dfs = (arr, cell, content, grid) => {
-  console.log(
-    'entered dfs with arr',
-    ...arr.map(c => c.index),
-    'cell',
-    cell.index
-  );
-  console.log(
-    'setting',
-    cell.index,
-    'to visited, content to',
-    content
-  );
   cell.visited = true;
   cell.content = content;
   arr.forEach(zeroCell => {
     if (!zeroCell.visited) {
-      console.log('>> recursing with', zeroCell.index);
       dfs(
         nearbyZeroes(zeroCell, grid),
         zeroCell,
@@ -128,45 +116,6 @@ grid.forEach((row, i, grid) => {
   });
 });
 
-const gridUncovered = (
-  grid,
-  { index, groupOfZeroesId }
-) => {
-  const groupsOfZeroesUncovered = [];
-  const isUncovered = groupOfZeroesId =>
-    groupsOfZeroesUncovered.indexOf(groupOfZeroesId) > 1;
-  const shouldUncover = (cell, idxPressed) => {
-    if (
-      cell.uncovered ||
-      isUncovered(cell.groupOfZeroesId)
-    ) {
-      return true;
-    }
-    if (cell.index === idxPressed) {
-      return true;
-    }
-    const [rowIndex, cellIndex] = coordsFromIndex(
-      index,
-      grid
-    );
-    if (
-      cell.content === 0 &&
-      closeNeighbours(rowIndex, cellIndex, grid).indexOf(
-        cell.index
-      ) > -1
-    ) {
-      return true;
-    }
-    return false;
-  };
-  return grid.map(row => {
-    return row.map(cell => ({
-      ...cell,
-      uncovered: shouldUncover(cell, index),
-    }));
-  });
-};
-
 const app = (
   state = { face: '😃', grid: grid, tick: 0 },
   action
@@ -190,18 +139,15 @@ const app = (
         face: '😮',
       };
     case CELL_UNCOVERED:
-      console.log(gridUncovered(state.grid, action.index));
       return {
         ...state,
-        grid: gridUncovered(state.grid, action.index),
+        // grid: gridUncovered(state.grid, action.index),
       };
     default:
       return state;
   }
 };
 
-const appReducer = combineReducers({
+export default combineReducers({
   app,
 });
-
-export default appReducer;
