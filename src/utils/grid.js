@@ -39,9 +39,23 @@ export const closeNeighbours = (
 };
 
 export const nearbyZeroes = (cell, grid) => {
+  const [rowIndex, cellIndex] = coordsFromIndex(cell.index, grid);
+  return closeNeighbours(rowIndex, cellIndex, grid)
+            .filter(c => c.content === 0);
+};
+
+export const edge = (cell, grid) => {
   const [i, j] = coordsFromIndex(cell.index, grid);
   return closeNeighbours(i, j, grid)
-            .filter(c => c.content === 0);
+    .filter(c => {
+      const [rowIndex, cellIndex] = coordsFromIndex(c.index, grid);
+      if (c.content > 0) {
+        return closeNeighbours(rowIndex, cellIndex, grid).find(cell => {
+          return cell && cell.content === 0;
+        });
+      }
+      return c.content === 0;
+    });
 };
 
 const countMines = (rowIndex, cellIndex, grid) => {
@@ -72,12 +86,13 @@ export const grid = size => _(Array(size * size))
     });
   });
 
-export const dfs = (arr, cell, grid) => {
+// Depth first search
+export const search = (arr, cell, grid) => {
   cell.visited = true;
   arr.forEach(zeroCell => {
     if (!zeroCell.visited) {
-      dfs(
-        nearbyZeroes(zeroCell, grid),
+      search(
+        edge(zeroCell, grid),
         zeroCell,
         grid
       );

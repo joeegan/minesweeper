@@ -5,19 +5,23 @@ import {
   RESTART,
   TICK,
 } from './../actions';
-import { coordsFromIndex, nearbyZeroes, dfs, grid } from '../utils/grid';
+import { coordsFromIndex, nearbyZeroes, edge, search, grid } from '../utils/grid';
 import _ from 'lodash';
 
 const gridUncovered = (grid, index) => {
   const [rowIndex, cellIndex] = coordsFromIndex(index, grid);
   const cell = grid[rowIndex][cellIndex];
   if (cell.content === 0) {
-    const zeroes = nearbyZeroes(cell, grid);
-    dfs(zeroes, cell, grid); // mutates grid 😬
+    // const zeroes = nearbyZeroes(cell, grid);
+    // search(zeroes, cell, grid); // mutates grid 😬
+    const edges = edge(cell, grid);
+    search(edges, cell, grid); // mutates grid 😬
+  } else {
+    cell.uncovered = true;
   }
   return grid.map(row => {
     return row.map(cell => {
-      cell.uncovered = cell.visited;
+      cell.uncovered = cell.uncovered || cell.visited;
       return cell;
     })
   });
@@ -47,7 +51,6 @@ const app = (
         face: '😮',
       };
     case CELL_UNCOVERED:
-      debugger;
       return {
         ...state,
         grid: gridUncovered(state.grid.slice(), action.index),
