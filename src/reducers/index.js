@@ -9,7 +9,23 @@ const neighbours = [
  [1,  -1], [1, 0], [1, 1]
 ];
 
+const coordsFromIndex = (index, grid) => {
+  let rowIndex;
+  let cellIndex;
+  grid.forEach((row, i) => { //TODO some, find?
+    const found = row.find(cell => cell.index === index);
+    if (found) {
+      [rowIndex, cellIndex] = [i, found.index]
+    }
+  });
+  return [
+    rowIndex,
+    cellIndex,
+  ]
+}
+
 const closeNeighbours = (rowIndex, cellIndex, grid) => {
+  // console.log('checking', 'rowIndex', rowIndex, 'cellIndex', cellIndex);
   const neighbours = [
     [-1, 0],
     [0, -1], [0, 1],
@@ -22,11 +38,11 @@ const closeNeighbours = (rowIndex, cellIndex, grid) => {
   }));
 }
 
-const nearbyZeroes = (rowIndex, cellIndex, grid) => {
-  const zeroIndexes = closeNeighbours(rowIndex, cellIndex, grid).map(c => c.index);
-  //TODO make recursive
-  return zeroIndexes;
-}
+const nearbyZeroes = (cell, grid) => {
+  const [i, j] = coordsFromIndex(cell.index, grid);
+  const neighbours = closeNeighbours(i, j, grid);
+  return neighbours.filter(c => c.content === 0)
+};
 
 const countMines = (rowIndex, cellIndex, grid) => {
   return neighbours.reduce((acc, [r, c]) => {
@@ -36,7 +52,7 @@ const countMines = (rowIndex, cellIndex, grid) => {
   }, 0);
 }
 
-const grid = () => _(Array(gridSizeSquared))
+const grid = _(Array(gridSizeSquared))
               .fill(0, gridSize, gridSizeSquared)
               .fill('💣', 0, gridSize)
               .shuffle()
@@ -54,44 +70,42 @@ const grid = () => _(Array(gridSizeSquared))
                   }
                   return cell;
                 });
-              })
-              // Add groupOfZeroesIds
-              .map((row, i, grid) => {
-                return row.map((cell, j) => {
-                  if (cell.content === 0) { //                                                           |
-                  //  const nearbyZeroes = findNearbyZeroes(i ,j, grid); TODO crawling zero check as ----| pattern faiing
-                   const nearbyZeroes = closeNeighbours(i, j, grid);
-                   // possibly scrap below code...
-                   const nearbyZeroWithId = nearbyZeroes.find(c => c && c.groupOfZeroesId);
-                   if (nearbyZeroWithId && nearbyZeroWithId.groupOfZeroesId) {
-                     cell.content = nearbyZeroWithId.groupOfZeroesId;
-                     cell.groupOfZeroesId = nearbyZeroWithId.groupOfZeroesId;
-                   } else {
-                     const rand = _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                     cell.content = rand;
-                     cell.groupOfZeroesId = rand;
-                   }
-                   return cell;
-                  }
-                  return cell;
-                });
-              })
+              });
 
+const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); // gets modified!
+const isAlpha = (char) => char && char.toString().match(/[A-Z]/);
 
-const coordsFromIndex = (index, grid) => {
-  let rowIndex;
-  let cellIndex;
-  grid.forEach((row, i) => { //TODO some, find?
-    const found = row.find(cell => cell.index === index);
-    if (found) {
-      [rowIndex, cellIndex] = [i, found.index]
+const dfs = (arr, cell, content, grid) => {
+  console.log('dfs with zeroCells', arr.map(c => c.index));
+  console.log('setting', cell.index, 'to visited');
+  console.log('setting', cell.index, 'to content', content);
+  cell.visited = true;
+  cell.content = content;
+  arr.forEach(zeroCell => {
+    if (!zeroCell.visited) {
+      cell.content = alpha[0];
+      console.log('>> recursing with', zeroCell.index);
+      dfs(nearbyZeroes(zeroCell, grid), zeroCell, content, grid);
+    } else {
     }
   });
-  return [
-    rowIndex,
-    cellIndex,
-  ]
 }
+
+grid.forEach((row, i, grid) => {
+  row.forEach((cell, j) => {
+    if (cell.content === 0 && !cell.visited) { //
+      const content = alpha.shift();
+      console.log('<< fresh call', 'looking at', cell.index, 'content should be ', content);
+      const zeroes = nearbyZeroes(cell, grid);
+      if (zeroes) {
+        dfs(zeroes, cell, content, grid);
+      }
+    }
+  });
+});
+
+
+
 
 const gridUncovered = (grid, { index, groupOfZeroesId }) => {
   const groupsOfZeroesUncovered = [];
@@ -119,7 +133,7 @@ const gridUncovered = (grid, { index, groupOfZeroesId }) => {
   });
 };
 
-const app = (state = { face: '😃', grid: grid(), tick: 0 }, action) => {
+const app = (state = { face: '😃', grid: grid, tick: 0 }, action) => {
 
   switch (action.type) {
     case TICK:
@@ -131,7 +145,7 @@ const app = (state = { face: '😃', grid: grid(), tick: 0 }, action) => {
       return {
         ...state,
         face: '😃',
-        grid: grid(),
+        grid: grid,
         tick: 0,
       }
     case CELL_PRESSED:
