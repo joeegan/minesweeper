@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+// X and Y distances to determine surrounding cells
 const neighbours = [
   [-1, -1],
   [-1, 0],
@@ -11,6 +12,8 @@ const neighbours = [
   [1, 1],
 ];
 
+// Returns X and Y from a flattened index
+// TODO remove reliance on this
 export const coordsFromIndex = (index, grid) => {
   let rowIndex;
   let cellIndex;
@@ -23,6 +26,7 @@ export const coordsFromIndex = (index, grid) => {
   return [rowIndex, cellIndex];
 };
 
+// Returns an array of cells that are are adjacent to the supplied
 export const closeNeighbours = (
   rowIndex,
   cellIndex,
@@ -38,12 +42,7 @@ export const closeNeighbours = (
   );
 };
 
-export const nearbyZeroes = (cell, grid) => {
-  const [rowIndex, cellIndex] = coordsFromIndex(cell.index, grid);
-  return closeNeighbours(rowIndex, cellIndex, grid)
-            .filter(c => c.content === 0);
-};
-
+// Returns an array of cells that are are zeroes or adjacent to zeroes
 export const edge = (cell, grid) => {
   const [i, j] = coordsFromIndex(cell.index, grid);
   return closeNeighbours(i, j, grid)
@@ -58,6 +57,7 @@ export const edge = (cell, grid) => {
     });
 };
 
+// Counts mines on surrounding cells
 const countMines = (rowIndex, cellIndex, grid) => {
   return neighbours.reduce((acc, [r, c]) => {
     const row = grid[rowIndex + r];
@@ -66,6 +66,7 @@ const countMines = (rowIndex, cellIndex, grid) => {
   }, 0);
 };
 
+// Sets up a grid populated with mines and 'counts'
 export const grid = size => _(Array(size * size))
   .fill(0, size, size * size)
   .fill('💣', 0, 10)

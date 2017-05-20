@@ -5,15 +5,14 @@ import {
   RESTART,
   TICK,
 } from './../actions';
-import { coordsFromIndex, nearbyZeroes, edge, search, grid } from '../utils/grid';
+import { coordsFromIndex, edge, search, grid } from '../utils/grid';
 import _ from 'lodash';
 
+// TODO - cleanup and make more descriptive, needs to scale to handle all possible cell contents.
 const gridUncovered = (grid, index) => {
   const [rowIndex, cellIndex] = coordsFromIndex(index, grid);
   const cell = grid[rowIndex][cellIndex];
   if (cell.content === 0) {
-    // const zeroes = nearbyZeroes(cell, grid);
-    // search(zeroes, cell, grid); // mutates grid 😬
     const edges = edge(cell, grid);
     search(edges, cell, grid); // mutates grid 😬
   } else {
@@ -26,7 +25,6 @@ const gridUncovered = (grid, index) => {
     })
   });
 }
-
 
 const app = (
   state = { face: '😃', grid: grid(9), tick: 0 },
@@ -53,6 +51,7 @@ const app = (
     case CELL_UNCOVERED:
       return {
         ...state,
+        // TODO determine whether the best thing to receive here is the index
         grid: gridUncovered(state.grid.slice(), action.index),
       };
     default:

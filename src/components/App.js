@@ -4,11 +4,12 @@ import _ from 'lodash';
 import Face from '../containers/Face'
 import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
+import Counter from '../containers/Counter'
 
 const App = () => (
   <div className='wrapper'>
     <div className='scoreBoard'>
-      <Clock/>
+      <Counter/>
       <div className='face face_smiling'>
         <div className='face-inner'>
           <Face/>
