@@ -1,26 +1,26 @@
-import React from 'react';
-import '../styles/App.css';
-import _ from 'lodash';
+import React from 'react'
+import '../styles/App.css'
+import _ from 'lodash'
 import Face from '../containers/Face'
 import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
 import Counter from '../containers/Counter'
 
 const App = () => (
-  <div className='wrapper'>
-    <div className='scoreBoard'>
-      <Counter/>
-      <div className='face face_smiling'>
-        <div className='face-inner'>
-          <Face/>
+  <div className="wrapper">
+    <div className="scoreBoard">
+      <Counter />
+      <div className="face face_smiling">
+        <div className="face-inner">
+          <Face />
         </div>
       </div>
-      <Clock/>
+      <Clock />
     </div>
-    <div className='grid'>
-      <Grid/>
+    <div className="grid">
+      <Grid />
     </div>
   </div>
-);
+)
 
-export default App;
+export default App

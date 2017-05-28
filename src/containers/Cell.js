@@ -3,8 +3,11 @@ import { CELL_PRESSED, CELL_UNCOVERED } from './../actions'
 import CellComponent from '../components/Cell'
 import _ from 'lodash'
 
-const mapStateToProps = (state, { index, uncovered, content }) => {
-  return { index, uncovered, content };
+const mapStateToProps = (
+  state,
+  { index, uncovered, content }
+) => {
+  return { index, uncovered, content }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -13,14 +16,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch({ type: CELL_PRESSED })
     },
     onMouseUp: () => {
-      dispatch({ type: CELL_UNCOVERED, index: ownProps.index })
+      dispatch({
+        type: CELL_UNCOVERED,
+        index: ownProps.index,
+      })
     },
   }
 }
 
-const Cell = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CellComponent)
+const Cell = connect(mapStateToProps, mapDispatchToProps)(
+  CellComponent
+)
 
 export default Cell

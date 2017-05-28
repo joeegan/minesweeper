@@ -12,13 +12,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
       // dispatch({ type: FACE_CHANGED })
-    }
+    },
   }
 }
 
-const Grid = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GridComponent)
+const Grid = connect(mapStateToProps, mapDispatchToProps)(
+  GridComponent
+)
 
 export default Grid

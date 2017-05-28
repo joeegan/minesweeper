@@ -12,13 +12,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onMouseUp: () => {
       dispatch({ type: RESTART })
-    }
+    },
   }
 }
 
-const Face = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FaceComponent)
+const Face = connect(mapStateToProps, mapDispatchToProps)(
+  FaceComponent
+)
 
 export default Face

@@ -1,23 +1,20 @@
-import {
-  TICK,
-  RESTART,
-} from '../actions';
+import { TICK, RESTART } from '../actions'
 
-let interval;
+let interval
 
 export default ({ dispatch }) => {
-  return (next) => (action) => {
+  return next => action => {
     if (action.type === RESTART) {
-      clearInterval(interval);
+      clearInterval(interval)
       interval = setInterval(() => {
         dispatch({
           type: TICK,
-        });
+        })
         console.log('tick')
-      }, 1000);
+      }, 1000)
     }
 
     /* eslint-enable no-console */
-    next(action);
-  };
+    next(action)
+  }
 }
