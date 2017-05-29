@@ -6,6 +6,7 @@ const Cell = ({
   content,
   uncovered,
   index,
+  selectedMine,
 }) => {
   return (
     <li
@@ -13,7 +14,15 @@ const Cell = ({
       onMouseUp={onMouseUp}
       className={uncovered ? 'cell uncovered' : 'cell'}
     >
-      <span className={'cell' + content}>{content}</span>
+      <span
+        className={
+          'cell' +
+            content +
+            (selectedMine ? ' selectedMine' : '')
+        }
+      >
+        {content}
+      </span>
     </li>
   )
 }

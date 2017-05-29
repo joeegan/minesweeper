@@ -13,25 +13,32 @@ import {
 } from '../utils/grid'
 import _ from 'lodash'
 
-// TODO - cleanup and make more descriptive, needs to scale to handle all possible cell contents.
 const gridUncovered = (grid, index) => {
   const [rowIndex, cellIndex] = coordsFromIndex(index, grid)
   const cell = grid[rowIndex][cellIndex]
+  cell.uncovered = true
+  if (cell.content === '💣') {
+    cell.selectedMine = true
+    return grid.map(row => {
+      return row.map(c => {
+        c.uncovered = c.uncovered || c.content === '💣'
+        return c
+      })
+    })
+  }
   if (cell.content === 0) {
     const edges = edge(cell, grid)
     search(edges, cell, grid) // mutates grid 😬
-  } else {
-    cell.uncovered = true
   }
   return grid.map(row => {
-    return row.map(cell => {
-      cell.uncovered = cell.uncovered || cell.visited
-      return cell
+    return row.map(c => {
+      c.uncovered = c.uncovered || c.visited
+      return c
     })
   })
 }
 const app = (
-  state = { face: '😃', grid: grid(9), tick: 0 },
+  state = { face: '😃', grid: grid(16), tick: 0 },
   action
 ) => {
   switch (action.type) {
@@ -44,7 +51,7 @@ const app = (
       return {
         ...state,
         face: '😃',
-        grid: grid(9),
+        grid: grid(16),
         tick: 0,
       }
     case CELL_PRESSED:
@@ -53,18 +60,17 @@ const app = (
         face: '😮',
       }
     case CELL_UNCOVERED:
+      const _grid = gridUncovered(
+        state.grid.slice(),
+        action.cell.index
+      )
       return {
         ...state,
-        // TODO determine whether the best thing to receive here is the index
-        grid: gridUncovered(
-          state.grid.slice(),
-          action.index
-        ),
+        grid: _grid,
+        face: action.cell.content === '💣' ? '😵' : '😃',
       }
     default:
       return state
   }
 }
-export default combineReducers({
-  app,
-})
+export default combineReducers({ app })

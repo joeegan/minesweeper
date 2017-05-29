@@ -5,9 +5,9 @@ import _ from 'lodash'
 
 const mapStateToProps = (
   state,
-  { index, uncovered, content }
+  { index, uncovered, content, selectedMine }
 ) => {
-  return { index, uncovered, content }
+  return { index, uncovered, content, selectedMine }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onMouseUp: () => {
       dispatch({
         type: CELL_UNCOVERED,
-        index: ownProps.index,
+        cell: Object.assign({}, ownProps),
       })
     },
   }

@@ -54,8 +54,8 @@ export const edge = (cell, grid) => {
         rowIndex,
         cellIndex,
         grid
-      ).find(cell => {
-        return cell && cell.content === 0
+      ).find(_cell => {
+        return _cell && _cell.content === 0
       })
     }
     return c.content === 0
@@ -73,7 +73,7 @@ const countMines = (rowIndex, cellIndex, grid) => {
 export const grid = size =>
   _(Array(size * size))
     .fill(0, size, size * size)
-    .fill('💣', 0, 10)
+    .fill('💣', 0, 40)
     .shuffle()
     .map((content, i) => ({
       content,

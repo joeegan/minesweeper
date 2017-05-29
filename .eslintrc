@@ -8,6 +8,10 @@
     "indent": ["error", 2],
     "maxlen": {
       "code": ["error", 50]
-    }
+    },
+    "padding-line-between-statements": [
+      "error",
+      { blankLine: "always", prev: "var", next: "return" }
+    ]
   }
 }

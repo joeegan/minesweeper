@@ -103,7 +103,7 @@ body {
   width: 134px;
   padding: 4px 5px;
   text-align: center;
-  margin-bottom: 7px;
+  margin: 3px auto;
   background: #ccc;
   border-top: 2px solid #666;
   border-left: 2px solid #666;
@@ -151,4 +151,7 @@ body {
 }
 .cell8 {
   color: grey;
+}
+.selectedMine {
+  background: red;
 }

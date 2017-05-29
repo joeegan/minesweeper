@@ -11,6 +11,7 @@ const Grid = ({ grid }) => (
             index={data.index}
             uncovered={data.uncovered}
             content={data.content}
+            selectedMine={data.selectedMine}
           />
         ))}
       </ul>
