@@ -6,7 +6,7 @@ import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
 import Counter from '../containers/Counter'
 
-const App = () => (
+const App = () =>
   <div className="wrapper">
     <div className="scoreBoard">
       <Counter />
@@ -21,6 +21,5 @@ const App = () => (
       <Grid />
     </div>
   </div>
-)
 
 export default App

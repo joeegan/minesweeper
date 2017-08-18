@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const Counter = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CounterComponent)
 
 export default Counter

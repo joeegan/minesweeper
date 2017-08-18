@@ -30,14 +30,14 @@ export const coordsFromIndex = (index, grid) => {
 export const closeNeighbours = (
   rowIndex,
   cellIndex,
-  grid
+  grid,
 ) => {
   return _.compact(
     neighbours.map(([r, c]) => {
       const row = grid[rowIndex + r]
       const cell = row && row[cellIndex + c]
       return cell
-    })
+    }),
   )
 }
 
@@ -47,13 +47,13 @@ export const edge = (cell, grid) => {
   return closeNeighbours(i, j, grid).filter(c => {
     const [rowIndex, cellIndex] = coordsFromIndex(
       c.index,
-      grid
+      grid,
     )
     if (c.content > 0) {
       return closeNeighbours(
         rowIndex,
         cellIndex,
-        grid
+        grid,
       ).find(_cell => {
         return _cell && _cell.content === 0
       })

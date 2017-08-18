@@ -3,28 +3,28 @@ import React from 'react'
 const Cell = ({
   onMouseDown,
   onMouseUp,
+  onContextMenu,
   content,
   uncovered,
   index,
   selectedMine,
-}) => {
-  return (
-    <li
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      className={uncovered ? 'cell uncovered' : 'cell'}
+  liClassName,
+}) =>
+  <li
+    onContextMenu={onContextMenu}
+    onMouseDown={onMouseDown}
+    onMouseUp={onMouseUp}
+    className={liClassName}
+  >
+    <span
+      className={
+        'cell' +
+        content +
+        (selectedMine ? ' selectedMine' : '')
+      }
     >
-      <span
-        className={
-          'cell' +
-            content +
-            (selectedMine ? ' selectedMine' : '')
-        }
-      >
-        {content}
-      </span>
-    </li>
-  )
-}
+      {content}
+    </span>
+  </li>
 
 export default Cell

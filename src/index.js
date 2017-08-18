@@ -11,7 +11,7 @@ import './index.css'
 
 const createStoreWithMiddleware = applyMiddleware(
   clock,
-  logger
+  logger,
 )(createStore)
 const store = createStoreWithMiddleware(appReducer)
 
@@ -19,5 +19,5 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )

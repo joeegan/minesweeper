@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Clock = connect(mapStateToProps, mapDispatchToProps)(
-  ClockComponent
+  ClockComponent,
 )
 
 export default Clock

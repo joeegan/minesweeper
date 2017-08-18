@@ -11,16 +11,16 @@ describe('utils', () => {
 
   it('finds close neighbours', () => {
     expect(
-      _.map(closeNeighbours(0, 0, grid), 'index')
+      _.map(closeNeighbours(0, 0, grid), 'index'),
     ).toEqual([1, 9])
     expect(
-      _.map(closeNeighbours(0, 1, grid), 'index')
+      _.map(closeNeighbours(0, 1, grid), 'index'),
     ).toEqual([0, 2, 10])
     expect(
-      _.map(closeNeighbours(1, 1, grid), 'index')
+      _.map(closeNeighbours(1, 1, grid), 'index'),
     ).toEqual([1, 9, 11, 19])
     expect(
-      _.map(closeNeighbours(1, 8, grid), 'index')
+      _.map(closeNeighbours(1, 8, grid), 'index'),
     ).toEqual([8, 16, 26])
   })
 })
@@ -36,7 +36,7 @@ describe('grid', () => {
     expect(
       _.flatten(grid).filter(({ content }) => {
         return content === '💣'
-      }).length
+      }).length,
     ).toEqual(10)
   })
 })

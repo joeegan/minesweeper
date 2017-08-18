@@ -1,14 +1,14 @@
 @font-face {
-   font-family: 'digital-7';
-   src: url('./digital-7.mono.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
+  font-family: 'digital-7';
+  src: url('./digital-7.mono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-   margin: 20px;
-   overflow: hidden;
-   font-family: 'digital-7', monospace;
+  margin: 20px;
+  overflow: hidden;
+  font-family: 'digital-7', monospace;
 }
 
 .wrapper {
@@ -53,8 +53,14 @@ body {
 .cell span {
   display: none;
 }
+
+.cell.flagged span,
 .cell.uncovered span {
   display: block;
+}
+
+.cell.flagged span {
+  font-size: 10px;
 }
 
 .digits {
@@ -132,7 +138,7 @@ body {
   color: blue;
 }
 .cell2 {
-  color: green
+  color: green;
 }
 .cell3 {
   color: red;

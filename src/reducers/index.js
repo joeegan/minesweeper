@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux'
 import {
   CELL_PRESSED,
+  CELL_RIGHT_CLICKED,
   CELL_UNCOVERED,
   RESTART,
   TICK,
@@ -8,10 +8,18 @@ import {
 import {
   coordsFromIndex,
   edge,
-  search,
   grid,
+  search,
 } from '../utils/grid'
-import _ from 'lodash'
+import { combineReducers } from 'redux'
+
+const gridRightClicked = (grid, index) => {
+  const [rowIndex, cellIndex] = coordsFromIndex(index, grid)
+  const cell = grid[rowIndex][cellIndex]
+  cell.flagged = true
+  cell.content = '🚩'
+  return grid
+}
 
 const gridUncovered = (grid, index) => {
   const [rowIndex, cellIndex] = coordsFromIndex(index, grid)
@@ -19,27 +27,32 @@ const gridUncovered = (grid, index) => {
   cell.uncovered = true
   if (cell.content === '💣') {
     cell.selectedMine = true
-    return grid.map(row => {
-      return row.map(c => {
+    return grid.map(row =>
+      row.map(c => {
         c.uncovered = c.uncovered || c.content === '💣'
         return c
-      })
-    })
+      }),
+    )
   }
   if (cell.content === 0) {
     const edges = edge(cell, grid)
     search(edges, cell, grid) // mutates grid 😬
   }
-  return grid.map(row => {
-    return row.map(c => {
+  return grid.map(row =>
+    row.map(c => {
       c.uncovered = c.uncovered || c.visited
       return c
-    })
-  })
+    }),
+  )
 }
+
 const app = (
-  state = { face: '😃', grid: grid(16), tick: 0 },
-  action
+  state = {
+    face: '😃',
+    grid: grid(16),
+    tick: 0,
+  },
+  action,
 ) => {
   switch (action.type) {
     case TICK:
@@ -59,16 +72,25 @@ const app = (
         ...state,
         face: '😮',
       }
-    case CELL_UNCOVERED:
-      const _grid = gridUncovered(
-        state.grid.slice(),
-        action.cell.index
-      )
+    case CELL_RIGHT_CLICKED:
       return {
         ...state,
-        grid: _grid,
+        face: '😃',
+        grid: gridRightClicked(
+          state.grid.slice(),
+          action.cell.index,
+        ),
+      }
+    case CELL_UNCOVERED: {
+      return {
+        ...state,
+        grid: gridUncovered(
+          state.grid.slice(),
+          action.cell.index,
+        ),
         face: action.cell.content === '💣' ? '😵' : '😃',
       }
+    }
     default:
       return state
   }

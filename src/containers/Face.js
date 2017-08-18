@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Face = connect(mapStateToProps, mapDispatchToProps)(
-  FaceComponent
+  FaceComponent,
 )
 
 export default Face

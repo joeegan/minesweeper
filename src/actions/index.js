@@ -1,4 +1,5 @@
 export const CELL_PRESSED = 'CELL_PRESSED'
+export const CELL_RIGHT_CLICKED = 'CELL_RIGHT_CLICKED'
 export const CELL_UNCOVERED = 'CELL_UNCOVERED'
 export const BEGIN = 'BEGIN'
 export const TICK = 'TICK'

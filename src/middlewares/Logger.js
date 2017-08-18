@@ -6,7 +6,7 @@ export default ({ dispatch }) => {
       console.log(
         '%c payload: ',
         'color: green',
-        action.payload
+        action.payload,
       )
       console.groupEnd(action.type)
     }
