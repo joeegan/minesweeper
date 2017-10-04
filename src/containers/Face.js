@@ -4,7 +4,7 @@ import FaceComponent from '../components/Face'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    face: state.app.face,
+    face: state.face
   }
 }
 
@@ -12,12 +12,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onMouseUp: () => {
       dispatch({ type: RESTART })
-    },
+    }
   }
 }
 
 const Face = connect(mapStateToProps, mapDispatchToProps)(
-  FaceComponent,
+  FaceComponent
 )
 
 export default Face

@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tick: state.app.tick,
+    tick: state.tick
   }
 }
 
@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const Clock = connect(mapStateToProps, mapDispatchToProps)(
-  ClockComponent,
+  ClockComponent
 )
 
 export default Clock
