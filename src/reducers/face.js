@@ -5,17 +5,17 @@ import {
   CELL_UNCOVERED
 } from './../actions'
 
-const face = (state = '😃', action) => {
+const face = (state = '🙂', action) => {
   switch (action.type) {
     case CELL_PRESSED:
       return '😮'
     case RESTART:
-      return '😃'
+      return '🙂'
     case CELL_RIGHT_CLICKED:
-      return '😃'
+      return '🙂'
     case CELL_UNCOVERED:
       // TODO action.content ?
-      return action.cell.content === '💣' ? '😵' : '😃'
+      return action.cell.content === '💣' ? '😵' : '🙂'
     default:
       return state
   }
