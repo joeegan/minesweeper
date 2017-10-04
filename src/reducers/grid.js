@@ -11,17 +11,20 @@ import {
   search
 } from '../utils/grid'
 
-const gridRightClicked = (grid, index) => {
+const getCell = (index, grid) => {
   const [rowIndex, cellIndex] = coordsFromIndex(index, grid)
-  const cell = grid[rowIndex][cellIndex]
+  return grid[rowIndex][cellIndex]
+}
+
+const gridRightClicked = (grid, index) => {
+  const cell = getCell(index, grid)
   cell.flagged = true
   cell.content = '🚩'
   return grid
 }
 
 const gridUncovered = (grid, index) => {
-  const [rowIndex, cellIndex] = coordsFromIndex(index, grid)
-  const cell = grid[rowIndex][cellIndex]
+  const cell = getCell(index, grid)
   cell.uncovered = true
   if (cell.content === '💣') {
     cell.selectedMine = true
