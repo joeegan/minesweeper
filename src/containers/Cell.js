@@ -2,19 +2,18 @@ import { connect } from 'react-redux'
 import {
   CELL_PRESSED,
   CELL_RIGHT_CLICKED,
-  CELL_UNCOVERED,
+  CELL_UNCOVERED
 } from './../actions'
 import CellComponent from '../components/Cell'
-import _ from 'lodash'
 
 const mapStateToProps = (
   state,
-  { index, uncovered, content, selectedMine },
+  { index, uncovered, content, selectedMine }
 ) => ({
   index,
   uncovered,
   content,
-  selectedMine,
+  selectedMine
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -29,7 +28,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     ev.preventDefault()
     dispatch({
       type: CELL_RIGHT_CLICKED,
-      cell: { ...ownProps },
+      cell: { ...ownProps }
     })
     return
   },
@@ -38,13 +37,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     dispatch({
       type: CELL_UNCOVERED,
-      cell: { ...ownProps },
+      cell: { ...ownProps }
     })
-  },
+  }
 })
 
 const Cell = connect(mapStateToProps, mapDispatchToProps)(
-  CellComponent,
+  CellComponent
 )
 
 export default Cell

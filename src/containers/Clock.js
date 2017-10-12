@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import ClockComponent from '../components/Clock'
-import _ from 'lodash'
 
 const mapStateToProps = (state, ownProps) => {
   return {

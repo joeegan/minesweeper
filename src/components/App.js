@@ -1,25 +1,21 @@
 import React from 'react'
 import '../styles/App.css'
-import _ from 'lodash'
 import Face from '../containers/Face'
 import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
 import Counter from '../containers/Counter'
+import { Wrapper, Scoreboard } from './App.styled'
 
 const App = () =>
-  <div className="wrapper">
-    <div className="scoreBoard">
+  <Wrapper>
+    <Scoreboard>
       <Counter />
-      <div className="face face_smiling">
-        <div className="face-inner">
-          <Face />
-        </div>
-      </div>
+      <Face />
       <Clock />
-    </div>
+    </Scoreboard>
     <div className="grid">
       <Grid />
     </div>
-  </div>
+  </Wrapper>
 
 export default App

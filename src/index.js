@@ -6,12 +6,11 @@ import appReducer from './reducers'
 import clock from './middlewares/Clock'
 import logger from './middlewares/Logger'
 import App from './components/App'
-import _ from 'lodash'
 import './index.css'
 
 const createStoreWithMiddleware = applyMiddleware(
   clock,
-  logger,
+  logger
 )(createStore)
 const store = createStoreWithMiddleware(appReducer)
 
@@ -19,5 +18,5 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 )

@@ -11,16 +11,6 @@ body {
   font-family: 'digital-7', monospace;
 }
 
-.wrapper {
-  background: #999;
-  padding: 7px;
-  display: inline-block;
-  border-top: 2px solid #eee;
-  border-left: 2px solid #eee;
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666;
-}
-
 .grid {
   border-top: 2px solid #666;
   border-left: 2px solid #666;
@@ -85,41 +75,7 @@ body {
   opacity: 0.3;
 }
 
-.face-inner {
-  width: 19px;
-  height: 19px;
-  line-height: 23px;
-  border-top: 2px solid #eee;
-  border-left: 2px solid #eee;
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666;
-  cursor: pointer;
-  margin: 1px auto;
-}
-
-.face-inner:active {
-  border-top: 2px solid #666;
-  border-left: 2px solid #666;
-  border-right: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-}
-
-.scoreBoard {
-  display: flex;
-  width: 134px;
-  padding: 4px 5px;
-  text-align: center;
-  margin: 3px auto;
-  background: #ccc;
-  border-top: 2px solid #666;
-  border-left: 2px solid #666;
-  border-right: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-}
-
-.scoreBoard > div {
-  flex: 1;
-}
+.scoreBoard
 
 .cell {
   font-family: monospace;
