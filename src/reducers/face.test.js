@@ -20,4 +20,24 @@ describe('face reducer', () => {
       '😮'
     )
   })
+
+  it('is smiley when uncovered a non-mine', () => {
+    expect(
+      reducer('🙂', {
+        type: CELL_UNCOVERED,
+        cell: { content: '1' }
+      })
+    ).toEqual('🙂')
+  })
+
+  it('is upset when uncovered a mine', () => {
+    expect(
+      reducer('🙂', {
+        type: CELL_UNCOVERED,
+        cell: { content: '💣' }
+      })
+    ).toEqual('😵')
+  })
+
+  //TODO Game
 })
