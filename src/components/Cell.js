@@ -1,6 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
-import { borders } from '../styles/utils'
+import { borders, colors } from '../styles/utils'
+
+const StyledCell = styled.li`
+  width: 12px;
+  height: 13px;
+  background: ${colors.lightGrey};
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 11px;
+
+  ${props =>
+    props.uncovered
+      ? 'border: 1px solid grey; padding: 1px;'
+      : borders(
+          'lightGrey',
+          'darkGrey',
+          'darkGrey',
+          'lightGrey'
+        )};
+`
+const colorNames = [
+  'transparent',
+  'blue',
+  'green',
+  'red',
+  'blue',
+  'brown',
+  'teal',
+  'black',
+  'grey'
+]
+const StyledSpan = styled.span.attrs({})`
+  background: ${props => props.background};
+  color: ${props => props.color};
+  display: ${props => props.display};
+  font-size: ${props => props.fontSize};
+  line-height: ${props => props.lineHeight};
+`
 
 const Cell = ({
   onMouseDown,
@@ -10,23 +48,25 @@ const Cell = ({
   uncovered,
   index,
   selectedMine,
-  liClassName
+  flagged
 }) =>
-  <li
+  <StyledCell
     onContextMenu={onContextMenu}
     onMouseDown={onMouseDown}
     onMouseUp={onMouseUp}
-    className={liClassName}
+    flagged={flagged}
+    uncovered={uncovered}
   >
-    <span
-      className={
-        'cell' +
-        content +
-        (selectedMine ? ' selectedMine' : '')
-      }
+    <StyledSpan
+      background={selectedMine ? 'red' : 'transparent'}
+      color={colorNames[content]}
+      display={flagged || uncovered ? 'block' : 'none'}
+      fontSize={flagged ? '10px' : 'inherit'}
+      lineHeight={content === '💣' ? '15px' : 'inherit'}
+      fontSize={content === '💣' ? '12px' : 'inherit'}
     >
       {content}
-    </span>
-  </li>
+    </StyledSpan>
+  </StyledCell>
 
 export default Cell
