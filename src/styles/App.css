@@ -11,13 +11,6 @@ body {
   font-family: 'digital-7', monospace;
 }
 
-.grid {
-  border-top: 2px solid #666;
-  border-left: 2px solid #666;
-  border-right: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-}
-
 .row {
   display: flex;
 }
@@ -52,30 +45,6 @@ body {
 .cell.flagged span {
   font-size: 10px;
 }
-
-.digits {
-  display: inline-block;
-  position: relative;
-}
-
-.digits-numbers,
-.digits-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: red;
-  background: black;
-  font-size: 34px;
-  font-weight: 100;
-  line-height: 28px;
-  height: 24px;
-}
-
-.digits-bg {
-  opacity: 0.3;
-}
-
-.scoreBoard
 
 .cell {
   font-family: monospace;

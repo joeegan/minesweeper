@@ -1,11 +1,12 @@
 import React from 'react'
+import { Digits } from './App.styled'
 
 const Clock = ({ tick }) =>
-  <div className="timeLeft digits">
-    <div className="digits-bg">888</div>
-    <div className="digits-numbers">
+  <Digits>
+    <div>888</div>
+    <div>
       {tick.toString().padStart(3, 0)}
     </div>
-  </div>
+  </Digits>
 
 export default Clock

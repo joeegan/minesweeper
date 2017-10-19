@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors, borders } from '../styles/utils'
+import { borders, colors } from '../styles/utils'
 
 export const Wrapper = styled.div`
   background: ${colors.vDarkGrey};
@@ -29,4 +29,32 @@ export const Scoreboard = styled.div`
   > div {
     flex: 1;
   }
+`
+
+export const Digits = styled.div`
+  display: inline-block;
+  position: relative;
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: red;
+    background: black;
+    font-size: 34px;
+    font-weight: 100;
+    line-height: 28px;
+    height: 24px;
+  }
+  > div:last-child {
+    opacity: 0.3;
+  }
+`
+
+export const GridBorder = styled.div`
+  ${borders(
+    'darkGrey',
+    'lightGrey',
+    'lightGrey',
+    'darkGrey'
+  )};
 `

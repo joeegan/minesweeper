@@ -4,7 +4,7 @@ import Face from '../containers/Face'
 import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
 import Counter from '../containers/Counter'
-import { Wrapper, Scoreboard } from './App.styled'
+import { Scoreboard, Wrapper } from './App.styled'
 
 const App = () =>
   <Wrapper>
@@ -13,9 +13,7 @@ const App = () =>
       <Face />
       <Clock />
     </Scoreboard>
-    <div className="grid">
-      <Grid />
-    </div>
+    <Grid />
   </Wrapper>
 
 export default App

@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+import { borders } from '../styles/utils'
 
 const Cell = ({
   onMouseDown,
@@ -8,7 +10,7 @@ const Cell = ({
   uncovered,
   index,
   selectedMine,
-  liClassName,
+  liClassName
 }) =>
   <li
     onContextMenu={onContextMenu}

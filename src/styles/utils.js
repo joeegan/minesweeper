@@ -1,18 +1,25 @@
+import {
+  compose,
+  flip,
+  identity,
+  map,
+  prop,
+  unapply,
+  zip
+} from 'ramda'
+
 const sides = ['top', 'right', 'bottom', 'left']
 
-const lightGrey = '#eee'
-const midGrey = '#ccc'
-const darkGrey = '#666'
-const vDarkGrey = '#999'
-
 export const colors = {
-  lightGrey,
-  midGrey,
-  darkGrey,
-  vDarkGrey
+  lightGrey: '#eee',
+  midGrey: '#ccc',
+  darkGrey: '#666',
+  vDarkGrey: '#999'
 }
 
-export const borders = (...bColors) =>
-  bColors.map(
-    (c, i) => `border-${sides[i]}: 2px solid ${colors[c]};`
-  )
+export const borders = compose(
+  map(([s, c]) => `border-${s}: 2px solid ${c};`),
+  zip(sides),
+  map(flip(prop)(colors)),
+  unapply(identity)
+)

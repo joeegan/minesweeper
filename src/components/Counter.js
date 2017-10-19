@@ -1,9 +1,10 @@
 import React from 'react'
+import { Digits } from './App.styled'
 
 const Counter = () =>
-  <div className="timeLeft digits">
-    <div className="digits-bg">888</div>
-    <div className="digits-numbers">000</div>
-  </div>
+  <Digits>
+    <div>888</div>
+    <div>000</div>
+  </Digits>
 
 export default Counter

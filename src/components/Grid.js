@@ -1,5 +1,6 @@
 import React from 'react'
 import Cell from '../containers/Cell'
+import { GridBorder } from './App.styled'
 
 const getLiClassName = (uncovered, flagged) => {
   if (uncovered) return 'cell uncovered'
@@ -7,7 +8,7 @@ const getLiClassName = (uncovered, flagged) => {
   return 'cell'
 }
 const Grid = ({ grid }) =>
-  <div>
+  <GridBorder>
     {grid.map((row, i) =>
       <ul className="row" key={i}>
         {row.map(data =>
@@ -19,12 +20,12 @@ const Grid = ({ grid }) =>
             selectedMine={data.selectedMine}
             liClassName={getLiClassName(
               data.uncovered,
-              data.flagged,
+              data.flagged
             )}
-          />,
+          />
         )}
-      </ul>,
+      </ul>
     )}
-  </div>
+  </GridBorder>
 
 export default Grid
