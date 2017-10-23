@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { borders, colors } from '../styles/utils'
+import { equals } from 'ramda'
 
 const StyledCell = styled.li`
   width: 12px;
@@ -42,6 +43,15 @@ const StyledSpan = styled.span`
   line-height: ${props => props.lineHeight};
 `
 
+const fontSize = (flagged, content) => {
+  if (equals(content, '💣')) {
+    return '12px'
+  } else if (flagged) {
+    return '10px'
+  }
+  return 'inherit'
+}
+
 const Cell = ({
   onMouseDown,
   onMouseUp,
@@ -63,9 +73,8 @@ const Cell = ({
       background={selectedMine ? 'red' : 'transparent'}
       color={colorNames[content]}
       display={flagged || uncovered ? 'block' : 'none'}
-      fontSize={flagged ? '10px' : 'inherit'}
       lineHeight={content === '💣' ? '15px' : 'inherit'}
-      fontSize={content === '💣' ? '12px' : 'inherit'}
+      fontSize={fontSize(flagged, content)}
     >
       {content}
     </StyledSpan>

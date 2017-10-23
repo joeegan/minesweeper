@@ -11,8 +11,7 @@ export default ({ dispatch }) => next => action => {
   ) {
     clearInterval(interval)
     intervalInProgress = false
-  }
-  if (
+  } else if (
     action.type === CELL_UNCOVERED &&
     !intervalInProgress
   ) {

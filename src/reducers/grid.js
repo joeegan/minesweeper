@@ -18,8 +18,12 @@ const getCell = (index, grid) => {
 
 const gridRightClicked = (grid, index) => {
   const cell = getCell(index, grid)
-  cell.flagged = true
-  cell.content = '🚩'
+  if (cell.flagged) {
+    cell.flagged = false
+  } else {
+    cell.flagged = true
+    cell.content = '🚩' // TODO can't lose original value for unflagging
+  }
   return grid
 }
 
