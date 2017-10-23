@@ -1,7 +1,21 @@
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import { borders, colors } from '../styles/utils'
 
-export const Wrapper = styled.div`
+injectGlobal`
+  @font-face {
+    font-family: 'digital-7';
+    src: url('./digital-7.mono.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  body {
+    margin: 20px;
+    overflow: hidden;
+    font-family: 'digital-7', monospace;
+  }
+`
+
+export const StyledApp = styled.div`
   background: ${colors.vDarkGrey};
   padding: 7px;
   display: inline-block;
@@ -45,8 +59,9 @@ export const Digits = styled.div`
     line-height: 28px;
     height: 24px;
   }
-  > div:last-child {
-    opacity: 0.3;
+  > div:first-child {
+    opacity: .3;
+    z-index: 1;
   }
 `
 

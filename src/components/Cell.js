@@ -5,7 +5,7 @@ import { borders, colors } from '../styles/utils'
 const StyledCell = styled.li`
   width: 12px;
   height: 13px;
-  background: ${colors.lightGrey};
+  background: ${colors.midGrey};
   font-family: monospace;
   font-weight: bold;
   font-size: 17px;
@@ -21,6 +21,7 @@ const StyledCell = styled.li`
           'lightGrey'
         )};
 `
+
 const colorNames = [
   'transparent',
   'blue',
@@ -32,8 +33,9 @@ const colorNames = [
   'black',
   'grey'
 ]
-const StyledSpan = styled.span.attrs({})`
-  background: ${props => props.background};
+
+const StyledSpan = styled.span`
+  background: ${({ background }) => background};
   color: ${props => props.color};
   display: ${props => props.display};
   font-size: ${props => props.fontSize};

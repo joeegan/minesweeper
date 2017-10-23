@@ -1,19 +1,18 @@
 import React from 'react'
-import '../styles/App.css'
 import Face from '../containers/Face'
 import Grid from '../containers/Grid'
 import Clock from '../containers/Clock'
 import Counter from '../containers/Counter'
-import { Scoreboard, Wrapper } from './App.styled'
+import { Scoreboard, StyledApp } from './App.styled'
 
 const App = () =>
-  <Wrapper>
+  <StyledApp>
     <Scoreboard>
       <Counter />
       <Face />
       <Clock />
     </Scoreboard>
     <Grid />
-  </Wrapper>
+  </StyledApp>
 
 export default App
