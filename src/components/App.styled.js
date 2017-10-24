@@ -13,6 +13,11 @@ injectGlobal`
     overflow: hidden;
     font-family: 'digital-7', monospace;
   }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 `
 
 export const StyledApp = styled.div`
